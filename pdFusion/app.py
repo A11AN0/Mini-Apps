@@ -1,11 +1,14 @@
-# hi this is my app pdFusion which will combine pdf docs
+import PyPDF2, glob, os
 
-import PyPDF2
+##1. PDF Fuser is initialized and declared
+pdf_fuser = PyPDF2.PdfFileMerger(strict=False)
 
-pdf_file = open("sample.pdf", "rb")
+##2. Will go through each file in deposit_pdfs directory and append them to the pdf fuser object
+os.chdir("deposit_pdfs")
+for file in glob.glob("*.pdf"):
+    single_pdf_doc = open(file, "rb")
+    pdf_fuser.append(single_pdf_doc)
 
-pdf_readerObj = PyPDF2.PdfFileReader(pdf_file, strict=False)
-
-singlePage = pdf_readerObj.getPage(1)
-
-print(singlePage.extractText())
+##3. Will then output the merged pdf into the merged_pdfs directory :)
+pdf_fuser.write("../merged_pdfs/merged_doc.pdf")
+print("All pdfs are merged, thanks for using pdFusion!")
