@@ -32,7 +32,7 @@ public class MainPackageClass {
 
     /* The main number guessing game */
     public static void game(int randomNumber) {
-        int guess = (int) Math.round(Double.parseDouble(readString("Guess a number between 0 and 100 ")));
+        int guess = (int) Math.round(Double.parseDouble(readString("Guess a number between 0 and 100: ")));
         while (guess != randomNumber) {
             if (guess > randomNumber)
                 System.out.println("Hmm, the number I'm thinking of is lower than " + guess);
